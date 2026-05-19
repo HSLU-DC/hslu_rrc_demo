@@ -73,7 +73,7 @@ class MoveToJoints(ROSmsg):
 # Werte stammen teilweise aus dem Swissbau-Repo (jp_home, jp_park etc.)
 # und ein paar selbst zusammengestellte Wackel-Posen.
 
-POS_HOME =    ([  90,   0,   0,   0,  90,  90], [1500.0])
+POS_HOME =    ([ -40,  20,   0,   0,  70, -40], [ 500.0])  # jp_home aus hslu_rrc_facade — safe pose for start/end
 POS_LEFT =    ([ -45,  20,  20,   0,  50, -45], [ 300.0])
 POS_RIGHT =   ([  45,  20,  20,   0,  50,  45], [2500.0])
 POS_HIGH =    ([   0, -30,  10,   0,  60,   0], [1500.0])
