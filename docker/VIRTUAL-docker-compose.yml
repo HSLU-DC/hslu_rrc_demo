@@ -26,7 +26,7 @@ services:
       - --wait
       - rosbridge_server
       - rosbridge_websocket.launch
-      - unregister_timeout:=28800
+      - unregister_timeout:=28800      # This horribly long timeout of 8 hours is to workaround this issue: https://github.com/RobotWebTools/rosbridge_suite/issues/138
 
   abb-driver:
     image: compasrrc/compas_rrc_driver:v1.1.2
@@ -40,11 +40,11 @@ services:
       - roslaunch
       - --wait
       - compas_rrc_driver
+      
       - bringup.launch
-      # Eine der drei Zeilen aktivieren:
-      # - robot_ip:=host.docker.internal   # Virtueller Controller in RobotStudio
-      # - robot_ip:=192.168.125.1          # Reale Steuerung Service Port
-      - robot_ip:=192.168.50.240           # Reale Steuerung WAN Port
+      - robot_ip:=host.docker.internal  # Virtual Controller  
+      #- robot_ip:=192.168.125.1         # Real Robot Service or Managment Port
+      #- robot_ip:=10.180.46.190         # Real Robot WAN Port
       - robot_streaming_port:=30101
       - robot_state_port:=30201
       - namespace:=rob1
