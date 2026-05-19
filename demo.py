@@ -80,7 +80,7 @@ POS_FAR =     ([ 45,  20,   -15,   0,  85, 220], [2300.0])
 
 # "Hoch / runter" am Home-Ort — Track bleibt bei 500, nur J2/J3 variieren
 POS_UP =      ([ -40,   0, 0,   0,  60, -40], [ 500.0])
-POS_DOWN =    ([ -65,  35,  15,   0,  80, -40], [ 500.0])
+POS_DOWN =    ([ -65,  35,  15,   -60,  80, -40], [ 500.0])
 
 # "Twist" am Home-Ort — Track bleibt bei 500, J4 & J6 verdrehen
 POS_TWIST_A = ([ -40,  20,   0,  60,  70,  20], [ 500.0])
@@ -207,7 +207,7 @@ def run_choreography(r1, loop_idx):
     print(f"\n===== LOOP {loop_idx + 1}/{N_LOOPS} =====")
 
     # Start in Home, kurzes Gripper-Klicken zur Ankündigung
-    move(r1, POS_HOME, time_s=4.0)
+    move(r1, POS_HOME, time_s=1.0)
     gripper_play(r1, n=2)
 
     # Track ganz rüber, dort Säge aufheulen (weit weg von allem), dann zurück
@@ -218,7 +218,7 @@ def run_choreography(r1, loop_idx):
     twist(r1)
 
     # Zurück in Home
-    move(r1, POS_HOME, time_s=4.0)
+    move(r1, POS_HOME, time_s=1.0)
     gripper_open(r1)
 
 
