@@ -76,11 +76,11 @@ class MoveToJoints(ROSmsg):
 POS_HOME =    ([ -40,  20,   0,   0,  70, -40], [ 500.0])   # jp_home aus hslu_rrc_facade — safe pose for start/end
 
 # "Ganz rüber" — gleiche Roboter-Pose, Track ans andere Ende (mit Reserve zum Limit 2900)
-POS_FAR =     ([ -40,  20,   0,   0,  70, -40], [2800.0])
+POS_FAR =     ([ 45,  20,   -15,   0,  85, 220], [2300.0])
 
 # "Hoch / runter" am Home-Ort — Track bleibt bei 500, nur J2/J3 variieren
-POS_UP =      ([ -40,   0, -15,   0,  60, -40], [ 500.0])
-POS_DOWN =    ([ -40,  35,  15,   0,  80, -40], [ 500.0])
+POS_UP =      ([ -40,   0, 0,   0,  60, -40], [ 500.0])
+POS_DOWN =    ([ -65,  35,  15,   0,  80, -40], [ 500.0])
 
 # "Twist" am Home-Ort — Track bleibt bei 500, J4 & J6 verdrehen
 POS_TWIST_A = ([ -40,  20,   0,  60,  70,  20], [ 500.0])
@@ -174,26 +174,26 @@ def track_far_and_back(r1, *, saw_at_far=False):
     aufgeheult — dort ist der Roboter weit weg von allem und sicher.
     """
     print("[ACT] Track rüber & zurück")
-    move(r1, POS_FAR, time_s=6.0)
+    move(r1, POS_FAR, time_s=2.0)
     if saw_at_far:
-        saw_burst(r1, duration=2.0)
-    move(r1, POS_HOME, time_s=6.0)
+        saw_burst(r1, duration=3.0)
+    move(r1, POS_HOME, time_s=2.0)
 
 
 def up_down(r1):
     """Am Home-Ort hoch und runter (J2/J3)."""
     print("[ACT] Hoch/Runter")
-    move(r1, POS_UP, time_s=2.0)
-    move(r1, POS_DOWN, time_s=2.0)
-    move(r1, POS_UP, time_s=2.0)
-    move(r1, POS_DOWN, time_s=2.0)
+    move(r1, POS_UP, time_s=1.0)
+    move(r1, POS_DOWN, time_s=1.0)
+    move(r1, POS_UP, time_s=1.0)
+    move(r1, POS_DOWN, time_s=1.0)
 
 
 def twist(r1):
     """Am Home-Ort verdrehen (J4/J6)."""
     print("[ACT] Twist")
-    move(r1, POS_TWIST_A, time_s=3.0)
-    move(r1, POS_TWIST_B, time_s=3.0)
+    move(r1, POS_TWIST_A, time_s=1.0)
+    move(r1, POS_TWIST_B, time_s=1.0)
 
 
 # ==============================================================================
