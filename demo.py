@@ -224,11 +224,18 @@ def run_choreography(r1, loop_idx):
     gripper_play(r1, n=2)
 
     # Track ganz rüber, dort Säge aufheulen (weit weg von allem), dann zurück
-    track_far_and_back(r1, saw_at_far=True)
+    track_far_and_back(r1, saw_at_far=False)
+
+    saw_burst(r1, 3.0)
 
     # Am Home-Ort hoch/runter und twist
     up_down(r1)
+
+    saw_on(r1)
+
     twist(r1)
+
+    saw_off(r1)
 
     # Zurück in Home
     move(r1, POS_HOME, time_s=1.0)
