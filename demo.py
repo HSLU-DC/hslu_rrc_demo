@@ -137,6 +137,19 @@ def saw_off(r1):
     r1.send_and_wait(rrc.CustomInstruction("r_HSLU_SawOff", [], []))
 
 
+def css_off(r1):
+    """Cartesian Soft Servo defensiv ausschalten.
+
+    Falls aus einer vorherigen Session (z.B. abgebrochenes Swissbau-
+    Production) CSS noch aktiv ist, wuerde der Roboter unerwartet
+    weich reagieren. Daher am Anfang immer einmal aus.
+    """
+    if DRY_RUN or r1 is None:
+        print("  [CSS] OFF")
+        return
+    r1.send_and_wait(rrc.CustomInstruction("r_RRC_CI_CSS", ["Off"], []))
+
+
 def wait(r1, seconds):
     """Wartet — entweder per WaitTime auf der Steuerung oder lokal."""
     if DRY_RUN or r1 is None:
@@ -233,6 +246,10 @@ def main():
         r1 = rrc.AbbClient(ros, ROBOT_NAME)
         print(f"Connected to {ROBOT_NAME}")
         r1.send(rrc.SetTool(TOOL_GRIPPER))
+
+    # Defensive: CSS aus, falls aus vorheriger Session noch aktiv
+    print("[INIT] CSS off")
+    css_off(r1)
 
     try:
         for i in range(N_LOOPS):
